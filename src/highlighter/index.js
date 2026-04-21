@@ -1,0 +1,13 @@
+export { ProductVariantSelectorHighlighter } from './product-variant-selector/highlighter.js';
+export { ProductCustomPriceSelectorHighlighter } from './product-custom-price-selector/highlighter.js';
+export { ProductPurchaseTypeSelectorHighlighter } from './product-purchase-type-selector/highlighter.js';
+export { ProductSubscriptionFrequencySelectorHighlighter } from './product-subscription-frequency-selector/highlighter.js';
+export { ProductCustomVariantLabelTextHighlighter } from './product-variant-custom-labeled-text/highlighter.js';
+export { ProductCustomCarouselMediaSelectorHighlighter } from './product-custom-carousel-media-selector/highlighter.js';
+export { ProductCustomAddToCartButtonHighlighter } from './product-custom-add-to-cart-button-selector/highlighter.js';
+export { ProductCustomSubmitInterceptorHighlighter } from './product-custom-submit-interceptor/highlighter.js';
+export { ProductMediaGalleryForGridsHighlighter  } from './product-media-gallery-for-grids/highlighter.js';
+export { ProductGridIconSmartInteractionButtonHighlighter  } from './product-grid-smart-interaction-button-selector/highlighter.js';
+export { ProductGridIconSmartSubscriptionButtonHighlighter  } from './product-grid-icon-smart-subscription-button-selector/highlighter.js';
+export { ProductStaticSubscriptionFrequencySelectorHighlighter } from './product-static-subscription-frequency-selector/highlighter.js';
+export { ProductStaticPriceSelectorHighlighter } from './product-static-price-selector/highlighter.js';

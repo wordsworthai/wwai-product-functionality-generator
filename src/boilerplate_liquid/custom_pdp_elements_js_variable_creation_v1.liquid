@@ -1,0 +1,112 @@
+<script>
+  {%- assign cleaned_mapping_str = product_mapping_str | strip | strip_newlines -%}
+  {%- assign product_mapping_array = cleaned_mapping_str | split: "," -%}
+
+  // Ensure SECTION_DATA is initialized
+  window.SECTION_DATA = window.SECTION_DATA || {};
+
+  if (window.SECTION_DATA["all_sections"]) {
+    console.warn("⚠️ window.SECTION_DATA.all_sections is already initialized. Skipping initialization.");
+  } else {
+      window.SECTION_DATA["all_sections"] = {};
+      Object.assign(window.SECTION_DATA["all_sections"], {
+        storeData: {
+          useMockSubscription: {{ use_mock_subscription }},
+          deployMode: "{{ deploy_mode }}",
+
+          storeDataConnected: true,
+          
+          dummyPrice: "{{ 100 | money }}",
+          productGroups: {
+            {% assign unique_product_group_tags = "" %}
+            {% for item in product_mapping_array %}
+              {% assign parts = item | strip | split: ":" %}
+              {% assign product_group_tag = parts[0] %}
+              {% assign product_tag = parts[1] %}
+              {% assign product_handle = parts[2] %}
+    
+              {% unless unique_product_group_tags contains product_group_tag %}
+                {% assign unique_product_group_tags = unique_product_group_tags | append: product_group_tag | append: "," %}
+              {% endunless %}
+            {% endfor %}
+    
+            {% assign unique_product_group_tags = unique_product_group_tags | split: "," | uniq %}
+    
+            {% for product_group_tag in unique_product_group_tags %}
+              {% if product_group_tag != "" %}
+              "{{ product_group_tag }}": {
+                {% for item in product_mapping_array %}
+                  {% assign parts = item | strip | split: ":" %}
+                  {% assign group_tag = parts[0] %}
+                  {% assign product_tag = parts[1] %}
+                  {% assign product_handle = parts[2] %}
+                  {% if group_tag == product_group_tag %}
+                    "{{ product_tag }}": {{ all_products[product_handle] | json }}{% unless forloop.last %},{% endunless %}
+                  {% endif %}
+                {% endfor %}
+              }{% unless forloop.last %},{% endunless %}
+              {% endif %}
+            {% endfor %}
+          },
+    
+          variantSellingPlans: {
+            {% for item in product_mapping_array %}
+              {% assign parts = item | strip | split: ":" %}
+              {% assign product_group_tag = parts[0] %}
+              {% assign product_tag = parts[1] %}
+              {% assign product_handle = parts[2] %}
+              "{{ product_group_tag }}__{{ product_tag }}": {
+                "variants":
+                  {%- assign product = all_products[product_handle] -%}
+                  {%- assign subscription_plan_metaobj = product.metafields.custom.subscription_selling_plan.value['selling_plan_groups'] -%}
+                  {%- assign subscription_plan_provider = product.selling_plan_groups -%}
+                  {%- assign product_variants_metaobj = product.metafields.custom.variant_selling_plan.value['variants'] -%}
+                  {%- assign product_variants_shopify = product.variants -%}
+    
+                  {%- if use_mock_subscription -%}
+                    {{ product_variants_metaobj | json }}
+                  {%- else -%}
+                    {{ product_variants_shopify | json }}
+                  {%- endif -%},
+                "selling_plan_groups":
+                  {%- if use_mock_subscription -%}
+                    {{ subscription_plan_metaobj | json }}
+                  {%- else -%}
+                    {{ subscription_plan_provider | json }}
+                  {%- endif -%}
+              }{% unless forloop.last %},{% endunless %}
+            {% endfor %}
+          }
+        }
+      });
+  }
+
+  function initLiquidProductMappingArray(liquidArrayFromTheme) {
+    const existing = window.LIQUID_PRODUCT_MAPPING_ARRAY;
+  
+    if (!Array.isArray(liquidArrayFromTheme)) {
+      console.error("WWAI-ERROR ❌ Provided liquid mapping is not a valid array.");
+      return;
+    }
+  
+    if (!existing) {
+      window.LIQUID_PRODUCT_MAPPING_ARRAY = liquidArrayFromTheme;
+      return;
+    }
+  
+    // Check for equality (order matters)
+    const isEqual = (
+      existing.length === liquidArrayFromTheme.length &&
+      existing.every((entry, i) => entry === liquidArrayFromTheme[i])
+    );
+  
+    if (!isEqual) {
+      console.error("WWAI-ERROR ❌ Conflict: LIQUID_PRODUCT_MAPPING_ARRAY already exists and does not match the one from Liquid.");
+      console.log("🔁 Existing:", existing);
+      console.log("🆕 Incoming from Liquid:", liquidArrayFromTheme);
+    } else {
+      console.log("✅ Liquid mapping array matches existing global value.");
+    }
+  }
+  initLiquidProductMappingArray({{ product_mapping_array | json }});
+</script>

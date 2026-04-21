@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Functionality Generator Test</title>
+  </head>
+  <body>
+       <label style="display: block; margin-bottom: 1rem;">
+       <input type="checkbox" id="debug-toggle">
+       Highlight Tagged Variant Inputs
+       </label>
+   <div style="margin-left: 0px;">
+<product-variant-selector
+    section_id="shopify-section-12345"
+    product_group="12345-main-product"
+    product-helper-handle="handle-1"
+    wwai-scope="pdp"
+    style="display: contents">
+   
+   
+    <!-- Product-Level Switch (e.g., 16oz vs 2oz are separate products) -->
+    <input type="radio"
+           name="product"
+           data-wwai-product-variant-option-type="product"
+           data-wwai-product-label="16oz"
+           checked>
+    16oz
+   
+   
+    <input type="radio"
+           name="product"
+           data-wwai-product-variant-option-type="product"
+           data-wwai-product-label="2oz">
+    2oz
+   
+   
+    <!-- Variant Options for 16oz -->
+    <!-- Option 1: Pack Size -->
+    <input type="radio"
+           name="product"
+           data-wwai-product-variant-option-type="product_variant"
+           data-wwai-product-label="16oz"
+           data-wwai-product-variant-label="3 Pack"
+           data-wwai-product-variant-label-level="option1"
+           checked>
+    3 Pack
+   
+   
+    <input type="radio"
+           name="variant-pack"
+           data-wwai-product-variant-option-type="product_variant"
+           data-wwai-product-label=""
+           data-wwai-product-variant-label="6 Pack"
+           data-wwai-product-variant-label-level="option1">
+    6 Pack
+   
+   
+    <!-- Option 2: Subscription -->
+    <input type="radio"
+           name="variant-subscription"
+           data-wwai-product-variant-option-type="product_variant"
+           data-wwai-product-label="16oz"
+           data-wwai-product-variant-label="One-Time Purchase"
+           data-wwai-product-variant-label-level="option2"
+           checked>
+    One-Time
+   
+    <input type="radio"
+           name="variant-subscription"
+           data-wwai-product-variant-option-type="product_variant"
+           data-wwai-product-label="16oz"
+           data-wwai-product-variant-label="Subscribe & Save"
+           data-wwai-product-variant-label-level="option2">
+    Subscribe & Save
+   
+   
+   </product-variant-selector>
+   
+   <product-variant-selector
+    section_id="shopify-section-09876"
+    product_group="12345-main-product-1"
+    product-helper-handle="handle-1"
+    wwai-scope="pdp"
+    style="display: contents">
+    <input type="radio"
+    name="product-1"
+    data-wwai-product-variant-option-type="product"
+    data-wwai-product-label="18oz"
+    checked>
+       18oz
+    </product-variant-selector>
+
+
+  </div>  
+
+  <div style="margin-top: 100px;">
+<product-custom-price-selector
+ section_id="shopify-section-12345"
+ product_group="12345-main-product"
+ style="display: contents">
+       <!-- Compare-at Price -->
+       <span
+         data-wwai-product-before-price
+         data-wwai-product-price-label="one_time"
+         style="opacity: 0.5; text-decoration: line-through">
+         $90.00
+       </span>
+
+       <!-- Current Price -->
+       <span
+         data-wwai-product-after-price
+         data-wwai-product-price-label="one_time">
+         $67.50
+       </span>
+
+       
+
+       <span
+       data-wwai-product-before-price
+       data-wwai-product-price-label="Subscribe"
+       style="opacity: 0.5; text-decoration: line-through">
+       $90.00
+     </span>
+
+     <!-- Current Price -->
+     <span
+       data-wwai-product-after-price
+       data-wwai-product-price-label="Subscribe">
+       $67.50
+     </span>
+
+
+</product-custom-price-selector>
+
+<div style="margin-top: 100px;max-width: 300px;">
+<product-custom-price-selector
+  section_id="shopify-section-12345"
+  product_group="12345-main-product"
+  style="display: contents"
+>
+  <!-- One-Time Purchase -->
+  <div data-wwai-price-before-wrapper>
+    <span
+      data-wwai-product-before-price
+      data-wwai-product-price-label="one_time"
+      style="opacity: 0.5; text-decoration: line-through"
+    >
+      $90.00
+    </span>
+  </div>
+  <div data-wwai-price-after-wrapper>
+    <span
+      data-wwai-product-after-price
+      data-wwai-product-price-label="one_time"
+    >
+      $67.50
+    </span>
+  </div>
+
+  <!-- Subscription Purchase -->
+  <div data-wwai-price-before-wrapper>
+    <span
+      data-wwai-product-before-price
+      data-wwai-product-price-label="Subscribe"
+      style="opacity: 0.5; text-decoration: line-through"
+    >
+      $90.00
+    </span>
+  </div>
+  <div data-wwai-price-after-wrapper>
+    <span
+      data-wwai-product-after-price
+      data-wwai-product-price-label="Subscribe"
+    >
+      $67.50
+    </span>
+  </div>
+</product-custom-price-selector>
+</div>
+<div style="margin-top: 100px; max-width: 300px;">
+<product-custom-price-selector
+  section_id="shopify-section-67890"
+  product_group="67890-subscription-product"
+  style="display: contents"
+>
+  <!-- One-Time -->
+  <div data-wwai-price-before-wrapper>
+    <span
+      data-wwai-product-before-price
+      data-wwai-product-price-label="one_time"
+    >
+      $100.00
+    </span>
+  </div>
+  <div data-wwai-price-after-wrapper>
+    <span
+      data-wwai-product-after-price
+      data-wwai-product-price-label="one_time"
+    >
+      $80.00
+    </span>
+  </div>
+  <div data-wwai-discount-percentage-wrapper>
+    <span
+      data-wwai-discount-percentage
+    >
+      20% off
+    </span>
+  </div>
+
+  <!-- Subscribe -->
+  <div data-wwai-price-before-wrapper>
+    <span
+      data-wwai-product-before-price
+      data-wwai-product-price-label="Subscribe"
+    >
+      $100.00
+    </span>
+  </div>
+  <div data-wwai-price-after-wrapper>
+    <span
+      data-wwai-product-after-price
+      data-wwai-product-price-label="Subscribe"
+    >
+      $70.00
+    </span>
+  </div>
+  <div data-wwai-discount-percentage-wrapper>
+    <span
+      data-wwai-discount-percentage
+      data-wwai-product-price-label="Subscribe"
+    >
+      30% off
+    </span>
+  </div>
+</product-custom-price-selector>
+</div>
+
+
+<div style="margin-top:100px; max-width: 300px;">
+  <product-purchase-type-selector
+  section_id="shopify-section-abc123"
+  product_group="abc123-main-product"
+  style="display: contents"
+>
+  <!-- Subscription Option -->
+  <label for="purchase-subscribe" class="purchase-option-label">
+    <input
+      type="radio"
+      id="purchase-subscribe"
+      name="purchase_option"
+      data-wwai-purchase-type-option="subscription"
+      data-wwai-product-label="Subscribe"
+    />
+    <div>
+      <strong>Subscribe & Save (25%)</strong>
+      <span class="price-info">
+        <s>$90.00</s> $67.50
+      </span>
+      <div class="dose-info">($2.80 per Dose shot)</div>
+      <!-- Add any bullets here -->
+    </div>
+  </label>
+
+  <!-- One-time Option -->
+  <label for="purchase-onetime" class="purchase-option-label">
+    <input
+      type="radio"
+      id="purchase-onetime"
+      name="purchase_option"
+      data-wwai-purchase-type-option="onetime"
+      data-wwai-product-label="One-time"
+    />
+    <div>
+      <strong>One-time purchase:</strong> $90.00
+      <div class="dose-info">($3.75 per Dose shot)</div>
+    </div>
+  </label>
+</product-purchase-type-selector>
+
+  </div>
+
+  <div style="margin-top:100px; max-width: 300px;">
+    <product-purchase-type-selector
+  section_id="shopify-section-conflict123"
+  product_group="conflict-main-product"
+  style="display: contents"
+>
+  <!-- ❌ Duplicate Subscription Option -->
+  <label for="purchase-subscribe-1" class="purchase-option-label">
+    <input
+      type="radio"
+      id="purchase-subscribe-1"
+      name="purchase_option"
+      data-wwai-purchase-type-option="subscription"
+    />
+    <div>Subscribe & Save (20%)</div>
+  </label>
+
+  <!-- ❌ Second Subscription Option (should not exist) -->
+  <label for="purchase-subscribe-2" class="purchase-option-label">
+    <input
+      type="radio"
+      id="purchase-subscribe-2"
+      name="purchase_option"
+      data-wwai-purchase-type-option="subscription"
+    />
+    <div>Subscribe (Alternate Plan)</div>
+  </label>
+
+  <!-- ✅ Valid One-time Option -->
+  <label for="purchase-onetime-bad" class="purchase-option-label">
+    <input
+      type="radio"
+      id="purchase-onetime-bad"
+      name="purchase_option"
+      data-wwai-purchase-type-option="onetime"
+    />
+    <div>One-time Purchase - $90.00</div>
+  </label>
+
+  <!-- ❌ Invalid radio (missing type attribute) -->
+  <label for="purchase-missing" class="purchase-option-label">
+    <input
+      type="radio"
+      id="purchase-missing"
+      name="purchase_option"
+    />
+    <div>Unknown Option (invalid)</div>
+  </label>
+</product-purchase-type-selector>
+
+    </div>
+
+    <div style="margin-top:100px; max-width: 300px;">
+      <product-subscription-frequency-selector
+  section_id="shopify-section-abc"
+  product_group="dose-for-your-liver-product"
+  style="display: contents"
+>
+  <select
+    class="pdp_main_selling_plan"
+    name="selling_plan"
+    data-wwai-subscription-frequency-select
+  >
+    <option value="3166109937">15 Days</option>
+    <option value="3166109935">45 Days</option>
+    <option value="3166109933">60 Days</option>
+  </select>
+</product-subscription-frequency-selector>
+
+    </div>
+
+    <div style="margin-top:100px; max-width: 300px;">
+      <product-subscription-frequency-selector
+  section_id="shopify-section-missing-name"
+  product_group="dose-liver-bad-1"
+  style="display: contents"
+>
+  <select class="pdp_main_selling_plan" data-wwai-subscription-frequency-select>
+    <option value="3166109937">15 Days</option>
+  </select>
+</product-subscription-frequency-selector>
+
+    </div>
+
+    <div style="margin-top:100px; max-width: 300px;">
+      <product-subscription-frequency-selector
+  section_id="shopify-section-not-select"
+  product_group="dose-liver-bad-2"
+  style="display: contents"
+>
+  <div class="pdp_main_selling_plan" name="wrong_element" data-wwai-subscription-frequency-select>
+    Not a real select
+  </div>
+</product-subscription-frequency-selector>
+    </div>
+
+        <div style="margin-top:100px; max-width: 300px;">
+          <!-- This could be outside any selector -->
+<input type="radio" name="selling_plan" value="conflict" />
+
+<product-subscription-frequency-selector
+  section_id="shopify-section-conflict"
+  product_group="dose-liver-bad-3"
+  style="display: contents"
+>
+  <select
+    class="pdp_main_selling_plan"
+    name="selling_plan"
+    data-wwai-subscription-frequency-select
+  >
+    <option value="3166109933">60 Days</option>
+  </select>
+</product-subscription-frequency-selector>
+
+        </div>
+
+        <div style="margin-top:100px; max-width: 300px;">
+          <product-subscription-frequency-selector
+  section_id="shopify-section-too-many"
+  product_group="dose-liver-bad-4"
+  style="display: contents"
+>
+  <select name="selling_plan_1" data-wwai-subscription-frequency-select>
+    <option value="a">30 Days</option>
+  </select>
+
+  <select name="selling_plan_2" data-wwai-subscription-frequency-select>
+    <option value="b">60 Days</option>
+  </select>
+</product-subscription-frequency-selector>
+  </div>
+
+  <div style="max-width: 600px; margin: 40px auto;">
+  
+    <!-- Purchase Type Selector -->
+    <product-purchase-type-selector
+      section_id="shopify-section-123"
+      product_group="dose_cholestrol_product_group"
+      style="display: contents"
+    >
+        <!-- Subscription Frequency Selector -->
+        <product-subscription-frequency-selector
+        section_id="shopify-section-123"
+        product_group="dose_cholestrol_product_group"
+        style="display: contents"
+      >
+      <!-- Variant Selector -->
+    <product-variant-custom-labeled-text
+        section_id="shopify-section-123"
+        product_group="dose_cholestrol_product_group"
+        style="display: contents;"
+    >
+        <!-- Price Display -->
+        <product-custom-price-selector
+        section_id="shopify-section-123"
+        product_group="dose_cholestrol_product_group"
+        style="display: contents"
+      >  
+
+
+  
+      <label>
+        <input type="radio" name="purchase_option" data-wwai-purchase-type-option="onetime" />
+        One-Time Purchase
+      </label>
+      <label>
+        <input type="radio" name="purchase_option" data-wwai-purchase-type-option="subscription" />
+        Subscribe & Save
+      </label>
+  
+
+      <select name="selling_plan" data-wwai-subscription-frequency-select>
+        <option value="3166109937">15 Days</option>
+        <option value="3166109935">30 Days</option>
+      </select>
+      
+      <label>
+        <input type="radio" name="variant" data-wwai-product-variant-option-type="product_variant"
+               data-wwai-product-label="Dose" data-wwai-product-variant-label-level="option1"
+               data-wwai-product-variant-label="Mint" />
+        Mint
+      </label>
+      <label>
+        <input type="radio" name="variant" data-wwai-product-variant-option-type="product_variant"
+               data-wwai-product-label="Dose" data-wwai-product-variant-label-level="option1"
+               data-wwai-product-variant-label="Berry" />
+        Berry
+      </label>
+
+  
+      <div data-wwai-price-before-wrapper>
+        <span data-wwai-product-before-price data-wwai-product-price-label="Subscribe">$90.00</span>
+      </div>
+      <div data-wwai-price-after-wrapper>
+        <span data-wwai-product-after-price data-wwai-product-price-label="Subscribe">$67.50</span>
+      </div>
+      <div data-wwai-discount-percentage-wrapper>
+        <span data-wwai-discount-percentage data-wwai-product-price-label="Subscribe">25% OFF</span>
+      </div>
+    </product-purchase-type-selector>
+  </product-subscription-frequency-selector>
+    </product-variant-custom-labeled-text>
+    </product-custom-price-selector>
+  </div>
+  
+
+
+    </div>
+
+    <script>
+      getWWAIConfig().JS_PRODUCT_MAPPING_OBJECT
+ = {
+        "12345-main-product": {
+          "16oz": "handle-1",
+          "2oz": "handle-1"
+        }
+      };
+    </script>
+
+       <script>
+       const VARIANT_CONFIG_UPDATE = {
+  "shopify-section-12345": {
+    "variantDispatchConfig": {
+      "12345-main-product": {
+        "defaultProduct": "16oz",
+        "defaultVariantOption1": "3 Pack",
+        "defaultVariantOption2": "Subscribe & Save",
+        "defaultVariantOption3": null,
+        "allProducts": "16oz | 2oz",
+        "allOptions": {
+          "option1": "3 Pack | 6 Pack",
+          "option2": "One-Time Purchase | Subscribe & Save",
+          "option3": ""
+        }
+      }
+    }
+  },
+  "shopify-section-09876": {
+    "variantDispatchConfig": {
+      "12345-main-product-1": {
+        "defaultProduct": "18oz",
+        "defaultVariantOption1": null,
+        "defaultVariantOption2": null,
+        "defaultVariantOption3": null,
+        "allProducts": "18oz",
+        "allOptions": {
+          "option1": "",
+          "option2": "",
+          "option3": ""
+        }
+      }
+    }
+  }
+};
+       function mergeVariantConfig(configUpdate) {
+         window.__WWAI__SECTION_PRODUCT_DATA__ = window.__WWAI__SECTION_PRODUCT_DATA__ || {};
+       
+         Object.entries(configUpdate).forEach(([sectionId, sectionData]) => {
+           const existingSection = window.__WWAI__SECTION_PRODUCT_DATA__[sectionId] || { variantDispatchConfig: {} };
+       
+           const newDispatchConfig = sectionData.variantDispatchConfig || {};
+           const mergedDispatchConfig = {
+             ...existingSection.variantDispatchConfig,
+             ...newDispatchConfig
+           };
+       
+           window.__WWAI__SECTION_PRODUCT_DATA__[sectionId] = {
+             ...existingSection,
+             variantDispatchConfig: mergedDispatchConfig
+           };
+         });
+       }
+       
+       // 👉 Apply the update
+       mergeVariantConfig(VARIANT_CONFIG_UPDATE);
+      </script>
+
+    <script src="../../dist/bundle.js"></script>
+  </body>
+</html>

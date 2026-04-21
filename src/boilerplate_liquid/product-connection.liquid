@@ -1,0 +1,46 @@
+<!-- WWAI_PRODUCT_CONNECTOR: Start -->
+{% if all_products != blank %}
+    {%- assign product_mapping_str = "
+
+        " -%}
+        
+        <script>
+        window.JS_PRODUCT_MAPPING_OBJECT = {
+          "dose_cholestrol_product_group": {
+            "16oz": "dose-for-cholesterol-16oz",
+            "2oz": "dose-for-cholesterol"
+          }
+        };
+        </script>
+
+        <script>
+            console.group("🧠 WWAI: Product Hydration from Liquid");
+            console.log("📄 Liquid product_mapping_str:");
+            console.log({{ product_mapping_str | json }});
+            
+            console.log("🧩 JS_PRODUCT_MAPPING_OBJECT used for hydration:");
+            console.log(JSON.stringify(window.JS_PRODUCT_MAPPING_OBJECT, null, 2));
+            console.groupEnd();    
+        </script>
+
+    
+    {%- assign deploy_mode = "local" -%}
+    {%- assign use_mock_subscription = false -%}
+    {%- if deploy_mode == "local" or deploy_mode == "sandbox" -%}
+        {%- assign use_mock_subscription = true -%}
+    {%- endif -%}
+  
+  
+    {%- assign section_id_with_prefix = "shopify-section-" | append: section.id -%}
+    {% render 'custom_pdp_elements_js_variable_creation_v1',
+      section_id_with_prefix: section_id_with_prefix,
+      product_mapping_str: product_mapping_str,
+      use_mock_subscription: use_mock_subscription,
+      deploy_mode: deploy_mode
+    %}
+  {% endif %}
+   <!-- WWAI_PRODUCT_CONNECTOR: END -->
+  
+  <script src="{{ 'functionality-generator.js' | asset_url }}" defer></script>
+  
+  

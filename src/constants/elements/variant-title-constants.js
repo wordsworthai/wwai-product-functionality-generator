@@ -1,0 +1,1 @@
+export const VARIANT_TITLE_ATTR = 'data-wwai-product-variant-title';
